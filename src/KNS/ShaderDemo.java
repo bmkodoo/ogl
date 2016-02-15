@@ -1,7 +1,10 @@
+package KNS;
+
+import KNS.shaders.StaticShader;
 import org.lwjgl.opengl.Display;
-import renderEngine.DisplayManager;
-import renderEngine.RawModel;
-import renderEngine.Renderer;
+import KNS.renderEngine.DisplayManager;
+import KNS.renderEngine.RawModel;
+import KNS.renderEngine.Renderer;
 
 import static org.lwjgl.opengl.GL11.*;
 

@@ -1,8 +1,11 @@
+package KNS.shaders;
+
 import org.lwjgl.opengl.GL20;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glGetProgramInfoLog;
+import static KNS.Loader.*;
 
 /**
  * Created by kodoo on 15.02.2016.
@@ -14,8 +17,8 @@ public abstract class ShaderProgram {
     private int fragmentShaderID;
 
     ShaderProgram(String vertexFile, String fragmentFile) {
-        vertexShaderID = Loader.loadShader(vertexFile, GL20.GL_VERTEX_SHADER);
-        fragmentShaderID = Loader.loadShader(fragmentFile, GL20.GL_FRAGMENT_SHADER);
+        vertexShaderID = loadShader(vertexFile, GL20.GL_VERTEX_SHADER);
+        fragmentShaderID = loadShader(fragmentFile, GL20.GL_FRAGMENT_SHADER);
         programID = GL20.glCreateProgram();
         GL20.glAttachShader(programID, vertexShaderID);
         GL20.glAttachShader(programID, fragmentShaderID);

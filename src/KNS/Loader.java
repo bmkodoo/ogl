@@ -1,7 +1,9 @@
+package KNS;
+
 import de.matthiasmann.twl.utils.PNGDecoder;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
-import renderEngine.RawModel;
+import KNS.renderEngine.RawModel;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -84,7 +86,7 @@ public class Loader {
         return buffer;
     }
 
-    static int loadShader(String name, int type) {
+    public static int loadShader(String name, int type) {
         StringBuilder shaderText;
         try(BufferedReader reader = new BufferedReader(new FileReader("shaders/" + name))) {
             shaderText = new StringBuilder();

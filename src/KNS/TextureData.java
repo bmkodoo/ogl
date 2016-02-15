@@ -1,3 +1,5 @@
+package KNS;
+
 import java.nio.ByteBuffer;
 
 public class TextureData {

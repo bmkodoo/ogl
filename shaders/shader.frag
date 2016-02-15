@@ -1,14 +1,10 @@
-#version 330 core
-in vec3 Normal;
-in vec3 Position;
-out vec4 color;
+#version 400 core
 
-uniform vec3 cameraPos;
-uniform samplerCube skybox;
+in vec3 colour;
 
-void main()
-{
-    vec3 I = normalize(Position - cameraPos);
-    vec3 R = reflect(I, normalize(Normal));
-    color = texture(skybox, R);
+out vec4 out_Color;
+
+void main() {
+
+    out_Color = vec4(colour, 1.0);
 }

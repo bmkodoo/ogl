@@ -1,5 +1,7 @@
 import org.lwjgl.opengl.Display;
 import renderEngine.DisplayManager;
+import renderEngine.RawModel;
+import renderEngine.Renderer;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -21,18 +23,35 @@ public class ShaderDemo {
 
     public static void main(String[] args) {
 
+        Loader loader = new Loader();
+        Renderer renderer = new Renderer();
         DisplayManager.createDisplay();
         StaticShader shader = new StaticShader();
 
+        float[] vertices = {
+                -0.5f, 0.5f, 0f,
+                -0.5f, -0.5f, 0f,
+                0.5f, -0.5f, 0f,
+                0.5f, 0.5f, 0f
+        };
+
+        int[] indices = {
+                0, 1, 3,
+                3, 1, 2
+        };
+
+        RawModel model = loader.loadToVAO(vertices, indices);
 
         while (!Display.isCloseRequested()) {
+            renderer.prepare();
             shader.start();
-            drawTriangle();
+            renderer.render(model);
             shader.stop();
 
             DisplayManager.updateDisplay();
         }
 
+        loader.cleanUp();
         shader.cleanUp();
         DisplayManager.closeDisplay();
         System.exit(0);

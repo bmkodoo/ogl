@@ -1,5 +1,6 @@
 package KNS;
 
+import KNS.entities.Entity;
 import KNS.models.TexturedModel;
 import KNS.shaders.StaticShader;
 import KNS.textures.ModelTexture;
@@ -7,6 +8,7 @@ import org.lwjgl.opengl.Display;
 import KNS.renderEngine.DisplayManager;
 import KNS.models.RawModel;
 import KNS.renderEngine.Renderer;
+import org.lwjgl.util.vector.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -46,20 +48,21 @@ public class ShaderDemo {
         };
 
         float[] textureCoords = {
-                0,0,
-                0,1,
-                1,1,
-                1,0
+                0, 0,
+                0, 1,
+                1, 1,
+                1, 0
         };
 
         RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
         ModelTexture texture = new ModelTexture(loader.loadTexture("Glitch_Male"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
+        Entity entity = new Entity(texturedModel, new Vector3f(-1, 0, 0), 0, 0, 0, 1);
 
         while (!Display.isCloseRequested()) {
             renderer.prepare();
             shader.start();
-            renderer.render(texturedModel);
+            renderer.render(entity, shader);
             shader.stop();
 
             DisplayManager.updateDisplay();

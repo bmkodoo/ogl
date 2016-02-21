@@ -1,4 +1,4 @@
-package KNS.renderEngine;
+package KNS.models;
 
 /**
  * Created by kodoo on 15.02.2016.

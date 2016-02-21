@@ -1,5 +1,7 @@
 package KNS.renderEngine;
 
+import KNS.models.RawModel;
+
 /**
  * Created by kodoo on 15.02.2016.
  */
@@ -50,7 +52,11 @@ public class SkyBoxRenderer {
             SIZE, -SIZE,  SIZE
     };
 
-    private static String[] TEXTURE_FILES = {"right", "left", "top", "bottom", "back", "front"};
+    private static String[] TEXTURE_FILES =
+            {"right", "left", "top", "bottom", "back", "front"};
 
+    private RawModel cube;
+    private int texture;
+    //private SkboxShader shader;
 
 }

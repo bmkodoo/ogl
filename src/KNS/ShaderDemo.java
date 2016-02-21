@@ -31,9 +31,9 @@ public class ShaderDemo {
     public static void main(String[] args) {
 
         Loader loader = new Loader();
-        Renderer renderer = new Renderer();
         DisplayManager.createDisplay();
         StaticShader shader = new StaticShader();
+        Renderer renderer = new Renderer(shader);
 
         float[] vertices = {
                 -0.5f, 0.5f, 0f,
@@ -57,9 +57,11 @@ public class ShaderDemo {
         RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
         ModelTexture texture = new ModelTexture(loader.loadTexture("Glitch_Male"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
-        Entity entity = new Entity(texturedModel, new Vector3f(-1, 0, 0), 0, 0, 0, 1);
+        Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -1), 0, 0, 0, 1);
 
         while (!Display.isCloseRequested()) {
+            entity.increasePosition(0, 0, -0.1f);
+            entity.increaseRotation(0, 1, 0);
             renderer.prepare();
             shader.start();
             renderer.render(entity, shader);

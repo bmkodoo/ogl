@@ -37,10 +37,17 @@ public class Loader {
         return new RawModel(vaoID, indices.length);
     }
 
+    public RawModel loadToVAO(float[] positions, int dementions) {
+        int vaoID = createVAO();
+        storeDataAttributeList(0, dementions, positions);
+        unbindVAO();
+        return new RawModel(vaoID, positions.length / dementions);
+    }
+
     public int loadTexture(String fileName) {
         Texture texture = null;
         try {
-            texture = TextureLoader.getTexture("PNG", new FileInputStream("res/" + fileName + ".png"));
+            texture = TextureLoader.getTexture("PNG", new FileInputStream("res/" + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -136,7 +143,7 @@ public class Loader {
         GL11.glBindTexture(GL13.GL_TEXTURE_CUBE_MAP, texID);
 
         for (int i = 0; i < textureFiles.length; i++) {
-            TextureData data = decodeTextureFile("rex/" + textureFiles[i] + ".png");
+            TextureData data = decodeTextureFile("res/" + textureFiles[i] + ".png");
             GL11.glTexImage2D(
                     GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
                     0,

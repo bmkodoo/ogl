@@ -6,6 +6,7 @@ import KNS.models.TexturedModel;
 import KNS.renderEngine.SkyBoxRenderer;
 import KNS.shaders.GlassShader;
 import KNS.shaders.StaticShader;
+import KNS.shaders.WaterShader;
 import KNS.textures.ModelTexture;
 import org.lwjgl.opengl.Display;
 import KNS.renderEngine.DisplayManager;
@@ -38,7 +39,7 @@ public class ShaderDemo {
 
         Loader loader = new Loader();
         DisplayManager.createDisplay();
-        GlassShader shader = new GlassShader();
+        WaterShader shader = new WaterShader();
         Renderer renderer = new Renderer(shader);
 
         float[] vertices = {
@@ -265,15 +266,15 @@ public class ShaderDemo {
         RawModel model = loader.loadToVAO(verts, textu, norms);
         ModelTexture texture = new ModelTexture(loader.loadTexture("texture.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
-        Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -5), 0, 0, 0, 1);
-        //entity.increaseRotation(30, 30, 0);
+        Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -7 ), 0, 0, 0, 2);
+        entity.increaseRotation(0, 30, 0);
         Camera camera = new Camera();
 
         SkyBoxRenderer skyBoxRenderer = new SkyBoxRenderer(loader, renderer.getProjectionMatrix());
 
         while (!Display.isCloseRequested()) {
             //entity.increasePosition(0, 0, -0.1f);
-            //entity.increaseRotation(0, 0, 0.5f);
+            entity.increaseRotation(0, -0.1f, 0);
             camera.move();
             renderer.prepare();
 

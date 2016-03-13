@@ -104,6 +104,15 @@ public class ShaderDemo {
 
         };
 
+        float[] normals = {
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f,-1.0f,
+            0.0f, 1.0f, 0.0f,
+            0.0f,-1.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            -1.0f, 0.0f, 0.0f,
+        };
+
         int[] indices = {
                 0,1,3,
                 3,1,2,
@@ -120,25 +129,159 @@ public class ShaderDemo {
 
         };
 
-        RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
+        float[] verts = {
+                -0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f,  0.5f, -0.5f,
+                0.5f,  0.5f, -0.5f,
+                -0.5f,  0.5f, -0.5f,
+                -0.5f, -0.5f, -0.5f,
+
+                -0.5f, -0.5f,  0.5f,
+                0.5f, -0.5f,  0.5f,
+                0.5f,  0.5f,  0.5f,
+                0.5f,  0.5f,  0.5f,
+                -0.5f,  0.5f,  0.5f,
+                -0.5f, -0.5f,  0.5f,
+
+                -0.5f,  0.5f,  0.5f,
+                -0.5f,  0.5f, -0.5f,
+                -0.5f, -0.5f, -0.5f,
+                -0.5f, -0.5f, -0.5f,
+                -0.5f, -0.5f,  0.5f,
+                -0.5f,  0.5f,  0.5f,
+
+                0.5f,  0.5f,  0.5f,
+                0.5f,  0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f,  0.5f,
+                0.5f,  0.5f,  0.5f,
+
+                -0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f, -0.5f,
+                0.5f, -0.5f,  0.5f,
+                0.5f, -0.5f,  0.5f,
+                -0.5f, -0.5f,  0.5f,
+                -0.5f, -0.5f, -0.5f,
+
+                -0.5f,  0.5f, -0.5f,
+                0.5f,  0.5f, -0.5f,
+                0.5f,  0.5f,  0.5f,
+                0.5f,  0.5f,  0.5f,
+                -0.5f,  0.5f,  0.5f,
+                -0.5f,  0.5f, -0.5f,
+        };
+
+        float[] norms = {
+                0.0f,  0.0f, -1.0f,
+                0.0f,  0.0f, -1.0f,
+                0.0f,  0.0f, -1.0f,
+                0.0f,  0.0f, -1.0f,
+                0.0f,  0.0f, -1.0f,
+                0.0f,  0.0f, -1.0f,
+
+                0.0f,  0.0f, 1.0f,
+                0.0f,  0.0f, 1.0f,
+                0.0f,  0.0f, 1.0f,
+                0.0f,  0.0f, 1.0f,
+                0.0f,  0.0f, 1.0f,
+                0.0f,  0.0f, 1.0f,
+
+                -1.0f,  0.0f,  0.0f,
+                -1.0f,  0.0f,  0.0f,
+                -1.0f,  0.0f,  0.0f,
+                -1.0f,  0.0f,  0.0f,
+                -1.0f,  0.0f,  0.0f,
+                -1.0f,  0.0f,  0.0f,
+
+                1.0f,  0.0f,  0.0f,
+                1.0f,  0.0f,  0.0f,
+                1.0f,  0.0f,  0.0f,
+                1.0f,  0.0f,  0.0f,
+                1.0f,  0.0f,  0.0f,
+                1.0f,  0.0f,  0.0f,
+
+                0.0f, -1.0f,  0.0f,
+                0.0f, -1.0f,  0.0f,
+                0.0f, -1.0f,  0.0f,
+                0.0f, -1.0f,  0.0f,
+                0.0f, -1.0f,  0.0f,
+                0.0f, -1.0f,  0.0f,
+
+                0.0f,  1.0f,  0.0f,
+                0.0f,  1.0f,  0.0f,
+                0.0f,  1.0f,  0.0f,
+                0.0f,  1.0f,  0.0f,
+                0.0f,  1.0f,  0.0f,
+                0.0f,  1.0f,  0.0f
+        };
+
+        float[] textu = {
+                // Texture Coords
+                0.0f, 0.0f,
+                1.0f, 0.0f,
+                1.0f, 1.0f,
+                1.0f, 1.0f,
+                0.0f, 1.0f,
+                0.0f, 0.0f,
+
+                0.0f, 0.0f,
+                1.0f, 0.0f,
+                1.0f, 1.0f,
+                1.0f, 1.0f,
+                0.0f, 1.0f,
+                0.0f, 0.0f,
+
+                1.0f, 0.0f,
+                1.0f, 1.0f,
+                0.0f, 1.0f,
+                0.0f, 1.0f,
+                0.0f, 0.0f,
+                1.0f, 0.0f,
+
+                1.0f, 0.0f,
+                1.0f, 1.0f,
+                0.0f, 1.0f,
+                0.0f, 1.0f,
+                0.0f, 0.0f,
+                1.0f, 0.0f,
+
+                0.0f, 1.0f,
+                1.0f, 1.0f,
+                1.0f, 0.0f,
+                1.0f, 0.0f,
+                0.0f, 0.0f,
+                0.0f, 1.0f,
+
+                0.0f, 1.0f,
+                1.0f, 1.0f,
+                1.0f, 0.0f,
+                1.0f, 0.0f,
+                0.0f, 0.0f,
+                0.0f, 1.0f
+        };
+
+        RawModel model = loader.loadToVAO(verts, textu, norms);
         ModelTexture texture = new ModelTexture(loader.loadTexture("texture.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
         Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -5), 0, 0, 0, 1);
-        entity.increaseRotation(30, 30, 0);
+        //entity.increaseRotation(30, 30, 0);
         Camera camera = new Camera();
-        shader.loadCameraPos(camera.getPosition());
 
         SkyBoxRenderer skyBoxRenderer = new SkyBoxRenderer(loader, renderer.getProjectionMatrix());
 
         while (!Display.isCloseRequested()) {
             //entity.increasePosition(0, 0, -0.1f);
-            entity.increaseRotation(1, 1, 0);
+            //entity.increaseRotation(0, 0, 0.5f);
             camera.move();
             renderer.prepare();
 
             skyBoxRenderer.render(camera);
             shader.start();
             shader.loadViewMatrix(camera);
+            shader.loadCameraPos(camera.getPosition());
+
             renderer.render(entity, shader);
             shader.stop();
 

@@ -7,12 +7,8 @@ uniform vec3 cameraPos;
 uniform samplerCube skybox;
 
 void main()
-{
-//    vec3 I = normalize(Position - cameraPos);
-//    vec3 R = reflect(I, normalize(Normal));
-//    color = texture(skybox, R);
-    float ratio = 1.00 / 1.52;
+{             
     vec3 I = normalize(Position - cameraPos);
-    vec3 R = refract(I, normalize(Normal), ratio);
+    vec3 R = reflect(I, normalize(Normal));
     color = texture(skybox, R);
 }

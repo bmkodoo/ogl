@@ -39,260 +39,55 @@ public class ShaderDemo {
 
         Loader loader = new Loader();
         DisplayManager.createDisplay();
-        WaterShader shader = new WaterShader();
-        Renderer renderer = new Renderer(shader);
+        WaterShader waterShader = new WaterShader();
+        GlassShader glassShader = new GlassShader();
+        Renderer renderer = new Renderer(waterShader);
+        Renderer glassRenderer = new Renderer(glassShader);
 
-        float[] vertices = {
-                -0.5f,0.5f,-0.5f,
-                -0.5f,-0.5f,-0.5f,
-                0.5f,-0.5f,-0.5f,
-                0.5f,0.5f,-0.5f,
-
-                -0.5f,0.5f,0.5f,
-                -0.5f,-0.5f,0.5f,
-                0.5f,-0.5f,0.5f,
-                0.5f,0.5f,0.5f,
-
-                0.5f,0.5f,-0.5f,
-                0.5f,-0.5f,-0.5f,
-                0.5f,-0.5f,0.5f,
-                0.5f,0.5f,0.5f,
-
-                -0.5f,0.5f,-0.5f,
-                -0.5f,-0.5f,-0.5f,
-                -0.5f,-0.5f,0.5f,
-                -0.5f,0.5f,0.5f,
-
-                -0.5f,0.5f,0.5f,
-                -0.5f,0.5f,-0.5f,
-                0.5f,0.5f,-0.5f,
-                0.5f,0.5f,0.5f,
-
-                -0.5f,-0.5f,0.5f,
-                -0.5f,-0.5f,-0.5f,
-                0.5f,-0.5f,-0.5f,
-                0.5f,-0.5f,0.5f
-
-        };
-
-//        float[] textureCoords = null;
-////                {
-////
-////                0,0,
-////                0,1,
-////                1,1,
-////                1,0,
-////                0,0,
-////                0,1,
-////                1,1,
-////                1,0,
-////                0,0,
-////                0,1,
-////                1,1,
-////                1,0,
-////                0,0,
-////                0,1,
-////                1,1,
-////                1,0,
-////                0,0,
-////                0,1,
-////                1,1,
-////                1,0,
-////                0,0,
-////                0,1,
-////                1,1,
-////                1,0
-////
-////
-////        };
-
-        float[] normals = {
-            0.0f, 0.0f, 1.0f,
-            0.0f, 0.0f,-1.0f,
-            0.0f, 1.0f, 0.0f,
-            0.0f,-1.0f, 0.0f,
-            1.0f, 0.0f, 0.0f,
-            -1.0f, 0.0f, 0.0f,
-        };
-
-        int[] indices = {
-                0,1,3,
-                3,1,2,
-                4,5,7,
-                7,5,6,
-                8,9,11,
-                11,9,10,
-                12,13,15,
-                15,13,14,
-                16,17,19,
-                19,17,18,
-                20,21,23,
-                23,21,22
-
-        };
-
-        float[] verts = {
-                -0.5f, -0.5f, -0.5f,
-                0.5f, -0.5f, -0.5f,
-                0.5f,  0.5f, -0.5f,
-                0.5f,  0.5f, -0.5f,
-                -0.5f,  0.5f, -0.5f,
-                -0.5f, -0.5f, -0.5f,
-
-                -0.5f, -0.5f,  0.5f,
-                0.5f, -0.5f,  0.5f,
-                0.5f,  0.5f,  0.5f,
-                0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f,  0.5f,
-                -0.5f, -0.5f,  0.5f,
-
-                -0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f, -0.5f,
-                -0.5f, -0.5f, -0.5f,
-                -0.5f, -0.5f, -0.5f,
-                -0.5f, -0.5f,  0.5f,
-                -0.5f,  0.5f,  0.5f,
-
-                0.5f,  0.5f,  0.5f,
-                0.5f,  0.5f, -0.5f,
-                0.5f, -0.5f, -0.5f,
-                0.5f, -0.5f, -0.5f,
-                0.5f, -0.5f,  0.5f,
-                0.5f,  0.5f,  0.5f,
-
-                -0.5f, -0.5f, -0.5f,
-                0.5f, -0.5f, -0.5f,
-                0.5f, -0.5f,  0.5f,
-                0.5f, -0.5f,  0.5f,
-                -0.5f, -0.5f,  0.5f,
-                -0.5f, -0.5f, -0.5f,
-
-                -0.5f,  0.5f, -0.5f,
-                0.5f,  0.5f, -0.5f,
-                0.5f,  0.5f,  0.5f,
-                0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f,  0.5f,
-                -0.5f,  0.5f, -0.5f,
-        };
-
-        float[] norms = {
-                0.0f,  0.0f, -1.0f,
-                0.0f,  0.0f, -1.0f,
-                0.0f,  0.0f, -1.0f,
-                0.0f,  0.0f, -1.0f,
-                0.0f,  0.0f, -1.0f,
-                0.0f,  0.0f, -1.0f,
-
-                0.0f,  0.0f, 1.0f,
-                0.0f,  0.0f, 1.0f,
-                0.0f,  0.0f, 1.0f,
-                0.0f,  0.0f, 1.0f,
-                0.0f,  0.0f, 1.0f,
-                0.0f,  0.0f, 1.0f,
-
-                -1.0f,  0.0f,  0.0f,
-                -1.0f,  0.0f,  0.0f,
-                -1.0f,  0.0f,  0.0f,
-                -1.0f,  0.0f,  0.0f,
-                -1.0f,  0.0f,  0.0f,
-                -1.0f,  0.0f,  0.0f,
-
-                1.0f,  0.0f,  0.0f,
-                1.0f,  0.0f,  0.0f,
-                1.0f,  0.0f,  0.0f,
-                1.0f,  0.0f,  0.0f,
-                1.0f,  0.0f,  0.0f,
-                1.0f,  0.0f,  0.0f,
-
-                0.0f, -1.0f,  0.0f,
-                0.0f, -1.0f,  0.0f,
-                0.0f, -1.0f,  0.0f,
-                0.0f, -1.0f,  0.0f,
-                0.0f, -1.0f,  0.0f,
-                0.0f, -1.0f,  0.0f,
-
-                0.0f,  1.0f,  0.0f,
-                0.0f,  1.0f,  0.0f,
-                0.0f,  1.0f,  0.0f,
-                0.0f,  1.0f,  0.0f,
-                0.0f,  1.0f,  0.0f,
-                0.0f,  1.0f,  0.0f
-        };
-
-        float[] textu = null;
-//        {
-//                // Texture Coords
-//                0.0f, 0.0f,
-//                1.0f, 0.0f,
-//                1.0f, 1.0f,
-//                1.0f, 1.0f,
-//                0.0f, 1.0f,
-//                0.0f, 0.0f,
-//
-//                0.0f, 0.0f,
-//                1.0f, 0.0f,
-//                1.0f, 1.0f,
-//                1.0f, 1.0f,
-//                0.0f, 1.0f,
-//                0.0f, 0.0f,
-//
-//                1.0f, 0.0f,
-//                1.0f, 1.0f,
-//                0.0f, 1.0f,
-//                0.0f, 1.0f,
-//                0.0f, 0.0f,
-//                1.0f, 0.0f,
-//
-//                1.0f, 0.0f,
-//                1.0f, 1.0f,
-//                0.0f, 1.0f,
-//                0.0f, 1.0f,
-//                0.0f, 0.0f,
-//                1.0f, 0.0f,
-//
-//                0.0f, 1.0f,
-//                1.0f, 1.0f,
-//                1.0f, 0.0f,
-//                1.0f, 0.0f,
-//                0.0f, 0.0f,
-//                0.0f, 1.0f,
-//
-//                0.0f, 1.0f,
-//                1.0f, 1.0f,
-//                1.0f, 0.0f,
-//                1.0f, 0.0f,
-//                0.0f, 0.0f,
-//                0.0f, 1.0f
-//        };
-
-        RawModel model = loader.loadToVAO(verts, textu, norms);
         ModelTexture texture = new ModelTexture(loader.loadTexture("texture.png"));
-        TexturedModel texturedModel = new TexturedModel(model, texture);
-        Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -7 ), 0, 0, 0, 2);
-        entity.increaseRotation(0, 30, 0);
+
+        RawModel glassRawModel = OBJLoader.load("res/cilinder.obj", loader);
+        TexturedModel texturedModel = new TexturedModel(glassRawModel, texture);
+        Entity glass = new Entity(texturedModel, new Vector3f(0, -4, -7 ), 0, 0, 0, 1);
+
+        RawModel waterRawModel = OBJLoader.load("res/cilinder.obj", loader);
+        TexturedModel waterModel = new TexturedModel(waterRawModel, texture);
+        Entity water = new Entity(waterModel, new Vector3f(0, -4, -7 ), 0, 0, 0, 0.8f);
+        water.increaseRotation(0, 0, 180);
+        water.increasePosition(0, 1f, 0);
+
         Camera camera = new Camera();
 
         SkyBoxRenderer skyBoxRenderer = new SkyBoxRenderer(loader, renderer.getProjectionMatrix());
 
         while (!Display.isCloseRequested()) {
             //entity.increasePosition(0, 0, -0.1f);
-            entity.increaseRotation(0, -0.1f, 0);
+            //glass.increaseRotation(-0.3f, 0, 0);
+            //water.increaseRotation(-0.3f, 0, 0);
             camera.move();
             renderer.prepare();
 
             skyBoxRenderer.render(camera);
-            shader.start();
-            shader.loadViewMatrix(camera);
-            shader.loadCameraPos(camera.getPosition());
 
-            renderer.render(entity, shader);
-            shader.stop();
+            waterShader.start();
+            waterShader.loadViewMatrix(camera);
+            waterShader.loadCameraPos(camera.getPosition());
+
+            renderer.render(water, waterShader);
+            waterShader.stop();
+
+            glassShader.start();
+            glassShader.loadViewMatrix(camera);
+            glassShader.loadCameraPos(camera.getPosition());
+
+            glassRenderer.render(glass, waterShader);
+            glassShader.stop();
 
             DisplayManager.updateDisplay();
         }
 
         loader.cleanUp();
-        shader.cleanUp();
+        waterShader.cleanUp();
         DisplayManager.closeDisplay();
         System.exit(0);
     }

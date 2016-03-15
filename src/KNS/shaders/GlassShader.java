@@ -8,8 +8,8 @@ import org.lwjgl.util.vector.Vector3f;
  */
 public class GlassShader extends StaticShader {
 
-    private static final String VERTEX_FILE = "reflection.vert";
-    private static final String FRAGMENT_FILE = "reflection.frag";
+    private static final String VERTEX_FILE = "glass.vert";
+    private static final String FRAGMENT_FILE = "glass.frag";
 
     private int location_cameraPosition;
 

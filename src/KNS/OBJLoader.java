@@ -62,7 +62,7 @@ public class OBJLoader {
                     System.out.printf("OBJLoader: face: %s\n", curVert);
 
                     int normPointer = Integer.parseInt(vertStrData[1]) - 1;
-                    Vector3f curNormal = vertices.get(normPointer);
+                    Vector3f curNormal = normals.get(normPointer);
                     normalsArray.add(curNormal.getX());
                     normalsArray.add(curNormal.getY());
                     normalsArray.add(curNormal.getZ());

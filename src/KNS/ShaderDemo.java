@@ -56,6 +56,11 @@ public class ShaderDemo {
         water.increaseRotation(0, 0, 180);
         water.increasePosition(0, 1f, 0);
 
+        RawModel cupRawModel = OBJLoader.load("res/circle.obj", loader);
+        TexturedModel capModel = new TexturedModel(cupRawModel, texture);
+        Entity cup = new Entity(capModel, new Vector3f(0, -4, -7 ), 0, 0, 0, 0.8f);
+        cup.increasePosition(0, 1.33f, 0);
+
         Camera camera = new Camera();
 
         SkyBoxRenderer skyBoxRenderer = new SkyBoxRenderer(loader, renderer.getProjectionMatrix());
@@ -72,7 +77,7 @@ public class ShaderDemo {
             waterShader.start();
             waterShader.loadViewMatrix(camera);
             waterShader.loadCameraPos(camera.getPosition());
-
+            renderer.render(cup, waterShader);
             renderer.render(water, waterShader);
             waterShader.stop();
 
